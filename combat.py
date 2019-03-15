@@ -5,7 +5,7 @@ def print_health(player):
     print(player.name.upper() + "  [%-20s] " % ('='*display) + str(player.current_health) + "/" + str(player.max_health))
 
 
-class Enemy(object):
+class Enemy():
     def __init__(self, name, max_health, ac):
         self.name = name
         self.max_health = max_health
@@ -17,7 +17,7 @@ class Enemy(object):
     def get_hit(self, dmg, hit):
         if hit >= self.ac:
             self.current_health -= dmg
-            if self.current_health <= 0:
+            if self.current_hezalth <= 0:
                 self.death()
 
     def physical_attack(self, enemy):
