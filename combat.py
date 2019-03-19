@@ -1,8 +1,9 @@
 from random import randint
+from gameloop import send_text, get_input
 
 def print_health(player):
     display = int(player.current_health/player.max_health * 20)
-    print(player.name.upper() + "  [%-20s] " % ('='*display) + str(player.current_health) + "/" + str(player.max_health))
+    send_text(player.name.upper() + "  [%-20s] " % ('='*display) + str(player.current_health) + "/" + str(player.max_health))
 
 
 class Enemy():
@@ -26,7 +27,7 @@ class Enemy():
         enemy.get_hit(dmg, hit)
 
     def death(self):
-        print(self.name + " is dead.")
+        send_text(self.name + " is dead.")
         self.dead = True
 
 
@@ -35,5 +36,16 @@ class Player(Enemy):
         Enemy.__init__(self, name, max_health, ac)
 
     def death(self):
-        print(self.name + " is dead")
+        send_text(self.name + " is dead")
         exit("That's a game over")
+
+    def consume(self, item):
+        """
+        Modifies both max_health and current_health values depending on the type of item
+        Input: Input an Item() class
+        :return: None
+        """
+
+class Item():
+    def __init__(self, health_effect, temporary=True):
+        pass

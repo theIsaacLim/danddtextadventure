@@ -2,20 +2,21 @@ from combat import Player, Enemy, print_health
 
 # The equivalent to the print function, will be replaced for messaging functionality
 def send_text(text):
+    """
+    Sends a text to the user, currently as just a print value but eventually as an actual text message on some social media
+    :param text:
+    :return:
+    """
     print(text)
 
 # Decision making!
-def make_decision(text):
-    input_valid = False
-    while not input_valid:
-        try:
-            move_choice = int(input("Press 1 to Attack and 2 to not Attack"))
-            if move_choice == 1 or move_choice == 2:
-                input_valid = True
-            else:
-                print("Invalid input")
-        except ValueError:
-            print("Invalid input")
+def get_input(prompt):
+    """
+    Gets an input from the user, currently as STD python unit but
+    :param prompt: the prompt from the user
+    :return: A string
+    """
+    return input(prompt)
 
 if __name__ == '__main__':
     player = Player('player', 24, 11)
@@ -24,21 +25,22 @@ if __name__ == '__main__':
         input_valid = False
         while not input_valid:
             try:
-                move_choice = int(input("Press 1 to Attack and 2 to not Attack"))
+                move_choice = int(get_input("Press 1 to Attack and 2 to not Attack"))
                 if move_choice == 1 or move_choice == 2:
                     input_valid = True
                 else:
-                    print("Invalid input")
+                    send_text("Invalid input")
             except ValueError:
                 print("Invalid input")
-        print("")
+        send_text("")
         if move_choice == 1:
             player.physical_attack(enemy)
 
         enemy.physical_attack(player)
 
         if enemy.dead:
-            exit("All enemies in this room are dead... Congratulations!")
+            send_text("")
+            exit()
 
         print_health(player)
         print_health(enemy)
