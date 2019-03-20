@@ -1,4 +1,4 @@
-from combat import Player, Enemy, print_health
+from combat import Player, Enemy, Item, print_health
 
 # The equivalent to the print function, will be replaced for messaging functionality
 def send_text(text):
@@ -19,8 +19,8 @@ def get_input(prompt):
     return input(prompt)
 
 if __name__ == '__main__':
-    player = Player('player', 24, 11)
-    enemy = Enemy('enemy', 24, 11)
+    player = Player('Sheriff Player', 24, 11)
+    enemy = Enemy("Rootin' Tootin' Putin", 24, 11)
     while True:
         input_valid = False
         while not input_valid:
