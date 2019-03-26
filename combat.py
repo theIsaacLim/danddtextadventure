@@ -34,7 +34,7 @@ class Enemy():
             send_text(choice(missing_text))
 
     def physical_attack(self, enemy):
-        dmg = self.dmg
+        dmg = randint(self.dmg[0], self.dmg[1])
         hit = randint(self.hit[0], self.hit[1]) + self.strength
         enemy.get_hit(dmg, hit, self.name)
 
@@ -45,7 +45,7 @@ class Enemy():
 
 class Player(Enemy):
     def __init__(self, name, max_health, ac):
-        Enemy.__init__(self, name, max_health, ac)
+        Enemy.__init__(self, name, max_health, ac, dmg=[1, 12])
 
     def death(self):
         send_text(self.name + " is dead")

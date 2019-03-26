@@ -22,12 +22,12 @@ class Dungeon():
     def __printDungeon(self, use_surround_map=False):
         if not use_surround_map:
             for line in self.dungeon_map:
-                print()
+                print("")
                 for room in line:
                     print(str(room) if room != 0 else " ", end="")
         else:
             for line in self.for_surround_check:
-                print()
+                print("")
                 for room in line:
                     print(str(room) if room != 0 else " ", end="")
 
@@ -158,8 +158,6 @@ class Dungeon():
         ran_num = randint(0, len(dungeon_preset)-1) # Randomly choose a preset tile to use
         self.__putTile(5, 5, dungeon_preset[ran_num])
 
-        self.__printDungeon()
-
         for_surrounding_check = []
 
         for row in self.dungeon_map:
@@ -176,85 +174,12 @@ class Dungeon():
         :return: a list of possible directions, ie. True True False False, meaning that North and East are directions you can go in but South and West are not
         """
         position = [position[0] + 1, position[1] + 1]
-        """
-        return [self.for_surround_check[position[1]-1][position[0]] is not 0,  # North
-                self.for_surround_check[position[1]][position[0]+1] is not 0,  # East
-                self.for_surround_check[position[1]+1][position[0]] is not 0,  # South
-                self.for_surround_check[position[1]][position[0]-1] is not 0]  # West
-        """
 
         ls = [self.for_surround_check[position[1]-1][position[0]],  # North
                 self.for_surround_check[position[1]][position[0]+1],  # East
                 self.for_surround_check[position[1]+1][position[0]], # South
                 self.for_surround_check[position[1]][position[0]-1]]  # West
         return [x is not 0 for x in ls]
-
-        """
-        print(self.dungeon_map[position[1]][position[0]])
-        at_bottom_row = position[0] == len(self.dungeon_map)-1
-        at_top_row = position[0] == 0
-        at_left_end = position[1] == 0
-        at_right_end = position[1] == len(self.dungeon_map[0])-1
-        print(at_bottom_row, at_top_row, at_right_end, at_left_end)
-
-        if at_bottom_row and not at_left_end and not at_right_end:
-            print('AT BOTTOM ROW')
-            return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                    self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                    False,  # South
-                    self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-        elif at_top_row and not at_left_end and not at_right_end:
-            print('AT TOP ROW')
-            return [False,  # North
-                    self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                    self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                    self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-        elif at_left_end and not at_top_row and not at_bottom_row:
-            print('AT LEFT END')
-            return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                    self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                    self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                    False]  # West
-        elif at_right_end and not at_top_row and not at_bottom_row:
-            print('AT RIGHT END')
-            return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                    False,  # East
-                    self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                    self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-        elif not at_bottom_row and not at_top_row and not at_left_end and not at_right_end:
-            print('IN THE MIDDLE')
-            return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                    self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                    self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                    self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-        else:
-            if at_top_row:
-                if at_left_end:
-                    print('Top left')
-                    return [False,  # North
-                            self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                            self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                            False]  # West
-                elif at_right_end:
-                    print('Top right')
-                    return [False,  # North
-                            False,  # East
-                            self.dungeon_map[position[1]+1][position[0]] is not 0,  # South
-                            self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-            if at_bottom_row:
-                if at_left_end:
-                    print('Bottom left')
-                    return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                            self.dungeon_map[position[1]][position[0]+1] is not 0,  # East
-                            False,  # South
-                            False]  # West
-                elif at_right_end:
-                    print('Bottom right')
-                    return [self.dungeon_map[position[1]-1][position[0]] is not 0,  # North
-                            False,  # East
-                            False,  # South
-                            self.dungeon_map[position[1]][position[0]-1] is not 0]  # West
-            """
 
     def move(self, direction):
         """
@@ -285,7 +210,6 @@ class Dungeon():
         4 ---> Portal room / Exit
         5 ---> Treasure room
         '''
-        print(len(choice(self.dungeon_map)))
         type_of_room = self.dungeon_map[position[1]][position[0]]
         if type_of_room == 0:
             raise TypeError
@@ -299,29 +223,29 @@ class Dungeon():
             # TODO: ITEMS!
             return None
 
+if __name__ == '__main__':
+    directions = ['North', 'Yeast', 'South', 'West']
+    dungeon = Dungeon()
 
-directions = ['North', 'Yeast', 'South', 'West']
-dungeon = Dungeon()
-
-current_room = dungeon.check_room(dungeon.player_position)
-
-print()
-while current_room != True:
-    surrounding = dungeon.check_for_surrounding(dungeon.player_position)
-    for i in range(len(surrounding)):
-        if surrounding[i] == True:
-            print("There's a room to your " + directions[i])
-
-    input_valid = False
-    while not input_valid:
-        try:
-            direction = int(input("Which direction will you go in? 0 for North, 1 for Yeast, 2 for South, 3 for West"))
-            if direction in [surrounding.index(i) for i in surrounding]:
-                input_valid = True
-            else:
-                print("Invalid input")
-        except ValueError:
-            print("Invalid input")
-
-    dungeon.move(direction)
     current_room = dungeon.check_room(dungeon.player_position)
+
+    print()
+    while current_room != True:
+        surrounding = dungeon.check_for_surrounding(dungeon.player_position)
+        for i in range(len(surrounding)):
+            if surrounding[i] == True:
+                print("There's a room to your " + directions[i])
+
+        input_valid = False
+        while not input_valid:
+            try:
+                direction = int(input("Which direction will you go in? 0 for North, 1 for Yeast, 2 for South, 3 for West"))
+                if direction in [surrounding.index(i) for i in surrounding]:
+                    input_valid = True
+                else:
+                    print("Invalid input")
+            except ValueError:
+                print("Invalid input")
+
+        dungeon.move(direction)
+        current_room = dungeon.check_room(dungeon.player_position)
