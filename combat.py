@@ -13,12 +13,14 @@ alien_text = ['The slippin\', squishin\', sound of tentacles reaches deep into y
 alien_miss_text = ['The gloop scrapes the corner of your hat', 'The tentacle just barely misses you']
 
 class Enemy():
-    def __init__(self, name, max_health, ac):
+    def __init__(self, name, max_health, ac, hit=[1, 20], dmg=[1, 12]):
         self.name = name
         self.max_health = max_health
         self.current_health = self.max_health
         self.ac = ac
+        self.dmg = dmg
         self.strength = 2
+        self.hit = hit
         self.dead = False
 
     def get_hit(self, dmg, hit, enemyName):
@@ -32,8 +34,8 @@ class Enemy():
             send_text(choice(missing_text))
 
     def physical_attack(self, enemy):
-        dmg = randint(1, 12)
-        hit = randint(1, 20) + self.strength
+        dmg = self.dmg
+        hit = randint(self.hit[0], self.hit[1]) + self.strength
         enemy.get_hit(dmg, hit, self.name)
 
     def death(self):
