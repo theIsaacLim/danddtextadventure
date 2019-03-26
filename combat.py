@@ -1,4 +1,5 @@
 from random import randint, choice
+from dialogue import shooting_text, missing_text, alien_miss_text, alien_text
 
 def send_text(text):
     print(text)
@@ -6,11 +7,6 @@ def send_text(text):
 def print_health(player):
     display = int(player.current_health/player.max_health * 20)
     send_text(player.name.upper() + "  [%-20s] " % ('='*display) + str(player.current_health) + "/" + str(player.max_health))
-
-shooting_text = ['Bam! You just shot & dead center', 'You shoots right into one of &\'s heart', 'You can hear the sound of a tight bullet piercing through &\'s skin']
-missing_text = ['Ooh- the bullet just barely scrapes a knee but bounces past', 'You can hear the sound of a bullet just barely missing', 'The bullet goes completely haywire and completely misses']
-alien_text = ['The slippin\', squishin\', sound of tentacles reaches deep into ya soul', 'You can see a slow pricklin\' as fluorescent slime covers your body']
-alien_miss_text = ['The gloop scrapes the corner of your hat', 'The tentacle just barely misses you']
 
 class Enemy():
     def __init__(self, name, max_health, ac, hit=[1, 20], dmg=[1, 12]):
