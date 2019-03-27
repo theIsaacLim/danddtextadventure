@@ -35,4 +35,11 @@ directional_text = ['To your %, you can see a glowing doorway',
                     'You can hear the gentle humming of a spaceship to your %',
                     "There's an alien-looking doorway to your %"]
 
+movement_text = ['Carefully, you put one foot in front of another',
+                 "You can hear your footsteps echoing through the hall as you dart into the next room"]
+
+drink = ["You glurp down the $",
+         "You eat the $ like a ravenous dog",
+         "You become one with the $ as it goes down your throat"]
+
 opening = "Welcome to Far Space, \nthe best game in the western regions of space, except space has no west because space doesn't have poles as it is not a planet, but we can mostly ignore this because we have defined it as un-dandy, pardner\nAll un-dandy information will be reported to the council of the dandiness, lead by supreme leader Dan\nIf you dare disobey Dan, you will be shot with a shotgun with a cowboy hat on it\n\nSupereme leader Dan has come down with a case of the backdoor trots so he's ordered y'all to invade this alien spaceship. Have a hog-killin' time! Yee-haw!\n"

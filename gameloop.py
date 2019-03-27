@@ -1,7 +1,7 @@
 from combat import Player, Enemy, Item, print_health
 from random import choice
 from dungeon import Dungeon
-from dialogue import send_text, opening, get_input, directional_text
+from dialogue import send_text, opening, get_input, directional_text, movement_text
 
 
 if __name__ == '__main__':
@@ -66,9 +66,10 @@ if __name__ == '__main__':
                     input_valid = True
                     direction = directions.index(directions_you_can_go_in[direction])
                 else:
-                    print("Invalid input")
+                    print("Your input is undandy, pardner")
             except ValueError:
-                print("Invalid input")
+                print("Your input is undandy, pardner")
 
         dungeon.move(direction)
+        send_text(choice(movement_text))
         current_room = dungeon.check_room(dungeon.player_position)

@@ -1,5 +1,5 @@
 from random import randint, choice
-from dialogue import shooting_text, missing_text, alien_miss_text, alien_text
+from dialogue import shooting_text, missing_text, alien_miss_text, alien_text, drink
 
 def send_text(text):
     print(text)
@@ -7,6 +7,7 @@ def send_text(text):
 def print_health(player):
     display = int(player.current_health/player.max_health * 20)
     send_text(player.name.upper() + "  [%-20s] " % ('='*display) + str(player.current_health) + "/" + str(player.max_health))
+
 
 class Enemy():
     def __init__(self, name, max_health, ac, hit=[1, 20], dmg=[1, 12]):
@@ -57,13 +58,24 @@ class Player(Enemy):
         else:
             send_text(choice(alien_miss_text))
 
+
     def consume(self, item):
         """
         Modifies both max_health and current_health values depending on the type of item
         Input: Input an Item() class
         :return: None
         """
+        send_text(drink.replace("$", item))
+        self.current_health += item.health_effect
+        if item.temporary:
+            if self.current_health > self.max_health:
+                self.current_health = self.max_health
+        else:
+            self.max_health = self.current_health
+
 
 class Item():
-    def __init__(self, health_effect, temporary=True):
-        pass
+    def __init__(self, name, health_effect, temporary=True):
+        self.name = name
+        self.health_effect = health_effect
+        self.temporary = temporary

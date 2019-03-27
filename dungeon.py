@@ -1,10 +1,14 @@
-from combat import Enemy
+from combat import Enemy, Item
 from random import randint, choice
 
 # name, max_health, ac, hit=[1, 20]
 enemies = [Enemy('Floating brain', 15, 5, dmg=[3, 12]),
            Enemy('rOoTiN\' tOoTiN\' PuTiN', 30, 5, dmg=[1, 5]),
-           Enemy('Literally ust a brain with a beak', 8, 20, dmg=[1, 12])]
+           Enemy('Literally just a floating tentacle', 1, 10, dmg=[1, 12])]
+
+afterwards = [Item("nonalcoholic beer", 5, False),
+              Item("some weird nonalcoholic root beer-lookin' alien drink", 5, True),
+              Item("half a horse testicle", 1, False)]
 
 class Room():
     def __init__(self, monster, item, start=False, leave=False):
