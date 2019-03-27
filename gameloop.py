@@ -1,5 +1,5 @@
 from combat import Player, Enemy, Item, print_health
-from random import choice
+from random import choice, randint
 from dungeon import Dungeon
 from dialogue import *
 
@@ -9,6 +9,13 @@ afterwards = [Item("nonalcoholic beer", 10, False),
               Item("half a horse leg", 1, False),
               Item("top quality alien oxygen", 0, False)]
 
+dandy_dialogue = ['You think you can defeat me? The dandiest in the west?',
+                  "I'm never gonna give you up, kid",
+                  "*alien screeching*",
+                  "You're done, kid",
+                  "Man, you've gone a long way. Too bad I'm gonna murder you tonight",
+                  "Y'know they're comin' for ya, right? The council?"]
+
 if __name__ == '__main__':
     send_text(opening)
     dungeon = Dungeon()
@@ -16,6 +23,7 @@ if __name__ == '__main__':
     directions = ['North', 'Yeast', 'South', 'West']
 
     while True:
+        break
         current_room = dungeon.check_room(dungeon.player_position)
         surrounding = dungeon.check_for_surrounding(dungeon.player_position)
 
@@ -92,6 +100,8 @@ if __name__ == '__main__':
         send_text(choice(movement_text))
         current_room = dungeon.check_room(dungeon.player_position)
 
+    # Boss battle!
+
     send_text("You have been teleported into a room with a menacing figure in the middle")
     send_text("What? Is that a cowboy hat on a pistol")
     send_text("Hold on... that might be Dan D Dann. It can't be!")
@@ -102,35 +112,26 @@ if __name__ == '__main__':
     send_text("His head starts to spin outwards, and it folds out and over.")
     send_text("Dan D Dann is no more. All that remains is a slimeball with tentacles in a cowboy jacket and hat. \n He screeches as he prepares to attack\n")
 
-    current_enemy = Enemy('Dan D Dann', 50, 10, dmg=[1, 5])
+    current_enemy = Enemy('Dan D Dann', 30, 5, dmg=[1, 2])
     in_battle = True
     while in_battle:
-        current_enemy.physical_attack(player)
 
         print_health(player)
         print_health(current_enemy)
 
         input_valid = False
-        while not input_valid:
-            try:
-                move_choice = int(get_input("Press 1 to shoot the darn alien"))
-                if move_choice == 1 or move_choice == 2:
-                    input_valid = True
-                else:
-                    send_text("Undandy input")
-            except ValueError:
-                    send_text("Undandy input")
-            send_text("")
-            if move_choice == 1:
-                player.physical_attack(current_enemy)
-            elif move_choice == 2:
-                in_battle = False
+        if randint(1, 3) == 3:
+            send_text('"$"'.replace("$", choice(dandy_dialogue)))
 
-            if current_enemy.dead:
-                in_battle = False
+        move_choice = int(get_input("Press 1 to shoot the darn alien"))
+        player.physical_attack(current_enemy)
+        if current_enemy.dead:
+            in_battle = False
+        current_enemy.physical_attack(player)
 
+    send_text("You hear a cold gunshot and the sound of alien blood splattering onto a metal ship")
     send_text('Dan D Dann is... dead?')
-    send_text("You're a hero. A hero, but an outcast")
+    send_text("You're a hero. But they're coming for you. The council, they're coming")
     send_text("Run from this place")
     get_input("Press anything to run from this place")
     send_text("You run into the far west, never to be seen again")

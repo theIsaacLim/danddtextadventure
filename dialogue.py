@@ -1,3 +1,5 @@
+from time import sleep
+
 # The equivalent to the print function, will be replaced for messaging functionality
 def send_text(text):
     """
@@ -6,6 +8,7 @@ def send_text(text):
     :return:
     """
     print(text)
+    sleep(len(text) * 0.01)
 
 # Decision making!
 def get_input(prompt):
