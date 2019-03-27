@@ -6,16 +6,15 @@ enemies = [Enemy('Floating brain', 15, 5, dmg=[3, 12]),
            Enemy('rOoTiN\' tOoTiN\' PuTiN', 30, 5, dmg=[1, 5]),
            Enemy('Literally just a floating tentacle', 1, 10, dmg=[1, 12])]
 
-afterwards = [Item("nonalcoholic beer", 5, False),
-              Item("some weird nonalcoholic root beer-lookin' alien drink", 5, True),
-              Item("half a horse testicle", 1, False)]
+# Items you can pick up in item rooms
+item_room = [Item("nonalcoholic beer", 10, False),
+             Item("some weird nonalcoholic root beer-lookin' alien drink", 8, True),
+             Item("half a bloody horse leg", 1, False),
+             Item("top quality alien oxygen", 0, False),
+             Item("top quality alien root beer", 10, True),
+             Item("a piece of rope", 1, False)]
 
-class Room():
-    def __init__(self, monster, item, start=False, leave=False):
-        """
-        :param monster: Enemy class
-        :param item: Item class
-        """
+
 
 class Dungeon():
     def __putTile(self, yAxis, xAxis, tile):
@@ -200,7 +199,7 @@ class Dungeon():
             self.player_position = [self.player_position[0] - 1, self.player_position[1]]
 
     def check_room(self, position):
-        global enemies
+        global enemies, item_room
         """
         :param position: x, y
         :return:
@@ -224,8 +223,11 @@ class Dungeon():
         elif type_of_room == 4:
             return True
         elif type_of_room == 5:
-            # TODO: ITEMS!
-            return None
+            return choice(item_room)
+
+    def kill_monster(self, position):
+        self.dungeon_map[position[0]][position[1]] = 0
+        self.for_surround_check[position[0] + 1][position[1] + 1] = 0
 
 if __name__ == '__main__':
     directions = ['North', 'Yeast', 'South', 'West']
