@@ -1,3 +1,5 @@
+from time import sleep
+
 # The equivalent to the print function, will be replaced for messaging functionality
 def send_text(text):
     """
@@ -6,6 +8,7 @@ def send_text(text):
     :return:
     """
     print(text)
+    sleep(len(text) * 0.01)
 
 # Decision making!
 def get_input(prompt):
@@ -28,8 +31,8 @@ alien_text = ['The slippin\', squishin\', sound of tentacles reaches deep into y
               'You can see a slow pricklin\' as fluorescent slime covers your body']
 
 
-alien_miss_text = ['The gloop scrapes the corner of your hat',
-                   'The tentacle just barely misses you']
+alien_miss_text = ['A blob of gloop from the alien scrapes the corner of your hat',
+                   'A tentacle just barely misses you and crashes down next to you']
 
 directional_text = ['To your %, you can see a glowing doorway',
                     'You can hear the gentle humming of a spaceship to your %',
@@ -42,4 +45,4 @@ drink = ["You glurp down the $",
          "You eat the $ like a ravenous dog",
          "You become one with the $ as it goes down your throat"]
 
-opening = "Welcome to Far Space, \nthe best game in the western regions of space, except space has no west because space doesn't have poles as it is not a planet, but we can mostly ignore this because we have defined it as un-dandy, pardner\nAll un-dandy information will be reported to the council of the dandiness, lead by supreme leader Dan\nIf you dare disobey Dan, you will be shot with a shotgun with a cowboy hat on it\n\nSupereme leader Dan has come down with a case of the backdoor trots so he's ordered y'all to invade this alien spaceship. Have a hog-killin' time! Yee-haw!\n"
+opening = "Welcome to Far Space, \nthe best game in the western regions of space, except space has no west because space doesn't have poles as it is not a planet, but we can mostly ignore this because we have defined it as un-dandy, pardner\nAll un-dandy information will be reported to the council of the dandiness, lead by supreme leader Dan D Dann\nIf you dare disobey Dan D Dann, you will be shot with a shotgun with a cowboy hat on it\n\nSupereme leader Dan has come down with a case of the backdoor trots so he's ordered y'all to invade this alien spaceship. Have a hog-killin' time! Yee-haw!\n"

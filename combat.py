@@ -1,5 +1,5 @@
 from random import randint, choice
-from dialogue import shooting_text, missing_text, alien_miss_text, alien_text, drink
+from dialogue import *
 
 def send_text(text):
     print(text)
@@ -65,8 +65,8 @@ class Player(Enemy):
         Input: Input an Item() class
         :return: None
         """
-        send_text(drink.replace("$", item))
         self.current_health += item.health_effect
+        print(self.current_health)
         if item.temporary:
             if self.current_health > self.max_health:
                 self.current_health = self.max_health
