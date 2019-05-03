@@ -112,7 +112,7 @@ if __name__ == '__main__':
     send_text("His head starts to spin outwards, and it folds out and over.")
     send_text("Dan D Dann is no more. All that remains is a slimeball with tentacles in a cowboy jacket and hat. \n He screeches as he prepares to attack\n")
 
-    current_enemy = Enemy('Dan D Dann', 30, 5, dmg=[1, 2])
+    current_enemy = Enemy('Dan D Dann', 40, 5, dmg=[1, 5])
     in_battle = True
     while in_battle:
 
@@ -123,11 +123,14 @@ if __name__ == '__main__':
         if randint(1, 3) == 3:
             send_text('"$"'.replace("$", choice(dandy_dialogue)))
 
-        move_choice = int(get_input("Press 1 to shoot the darn alien"))
+        move_choice = get_input("Press 1 to shoot the darn alien")
         player.physical_attack(current_enemy)
+        current_enemy.physical_attack(player)
         if current_enemy.dead:
             in_battle = False
-        current_enemy.physical_attack(player)
+        if move_choice == "why are we participating in this xenophobic violence? Let's be friends.":
+            print(move_choice)
+            in_battle = False
 
     send_text("You hear a cold gunshot and the sound of alien blood splattering onto a metal ship")
     send_text('Dan D Dann is... dead?')
