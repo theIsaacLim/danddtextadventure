@@ -1,4 +1,11 @@
 from time import sleep
+import discord
+
+recieved = ""
+TOKEN = 'NTU3NzY0OTQ4OTQ4OTQyODc4.D3YQtA.NhIFAjbb8MT5XNqFd_iqarh9LHI'
+client = discord.Client()
+
+
 
 # The equivalent to the print function, will be replaced for messaging functionality
 def send_text(text):
@@ -7,17 +14,15 @@ def send_text(text):
     :param text:
     :return:
     """
+    await client.send_message(message.channel, text)
     print(text)
-    sleep(len(text) * 0.01)
 
 # Decision making!
 def get_input(prompt):
-    """
-    Gets an input from the user, currently as STD python unit but
-    :param prompt: the prompt from the user
-    :return: A string
-    """
+    await client.send_message(message.channel, prompt)
     return input(prompt)
+
+client.run('NTU3NzY0OTQ4OTQ4OTQyODc4.D3YQtA.NhIFAjbb8MT5XNqFd_iqarh9LHI')
 
 shooting_text = ['Bam! You just shot & dead center',
                  'You shoots right into one of &\'s heart',

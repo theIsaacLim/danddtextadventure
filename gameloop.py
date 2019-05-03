@@ -2,7 +2,7 @@ from combat import Player, Enemy, Item, print_health
 from random import choice, randint
 from dungeon import Dungeon
 from dialogue import *
-
+import discord
 # Items you can pick up after a battle
 afterwards = [Item("nonalcoholic beer", 10, False),
               Item("some weird nonalcoholic root beer-lookin' alien drink", 8, True),
